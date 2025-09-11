@@ -15,5 +15,20 @@ class Array{
         for(int i =0 ; i< n ; i++){
             System.out.print(nums[i] + ", ");
         }
+        System.out.println();
+        int i =0, j= n-1;
+        while(i<j)
+        {
+            int temp = nums[j];
+            nums[j] = nums[i];
+            nums[i] = temp;
+            i++;
+            j--;
+        }
+        System.out.println("Values of the array After Reversing: ");
+        for(int k =0 ; k< n ; k++){
+            System.out.print(nums[k] + ", ");
+        }
+
     }
 }
