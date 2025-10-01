@@ -1,4 +1,4 @@
-//optimal solution - O(n)
+//optimal solution - O(n2)
 class Solution {
     public boolean rotateString(String s, String goal) {
         if(s.length() != goal.length())
