@@ -1,7 +1,7 @@
 public class Book {
     String title, author, isbn;
     public static int totalBooks;
-    boolean isBorrowed.
+    private boolean isBorrowed;
     public void borrowBook(){
 
     }
