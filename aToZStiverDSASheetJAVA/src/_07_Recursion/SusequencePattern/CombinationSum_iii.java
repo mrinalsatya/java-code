@@ -1,5 +1,6 @@
 package aToZStiverDSASheetJAVA.src._07_Recursion.SusequencePattern;
 
+//https://leetcode.com/problems/combination-sum-iii/description/
 public class CombinationSum_iii {
     public void helper(int k, int n, int ind, int sum, List<Integer> temp, List<List<Integer>> ans){
         if(temp.size() >= k){
