@@ -23,7 +23,7 @@ public class KthPermutationSequence {
                 break;
             }
             k = k % fact;
-            fact = fact / nums.size(); // siez of the new list
+            fact = fact / nums.size(); // size of the new list
         }
 
         return ans.toString();
