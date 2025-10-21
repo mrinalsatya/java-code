@@ -32,7 +32,7 @@ public class AsteroidCollision {
             }
         }
 
-        // Convert stack to result array
+        // Convert stack to result array.
         int[] result = new int[st.size()];
         int i = st.size() - 1;
         for (int asteroid : st) {
