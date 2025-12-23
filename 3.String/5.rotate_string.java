@@ -1,23 +1,39 @@
 //optimal solution - O(n2)
 class Solution {
     public boolean rotateString(String s, String goal) {
-        if(s.length() != goal.length())
+
+        // If lengths differ, rotation is impossible
+        if (s.length() != goal.length())
             return false;
+
+        // Use StringBuilder to perform rotations efficiently
         StringBuilder str = new StringBuilder(s);
-        int n = s.length();
-        while(true){
-            if(str.toString().equals(goal))
+        int n = s.length();   // Number of possible rotations
+
+        while (true) {
+
+            // Check if current rotation matches goal
+            if (str.toString().equals(goal))
                 return true;
+
+            // Rotate left by 1 character:
+            // take first char -> remove it -> append it to end
             char ch = str.charAt(0);
             str.deleteCharAt(0);
             str.append(ch);
-            n--;
-            if(n == 0 && !str.toString().equals(goal))  break;
+
+            n--;  // One rotation done
+
+            // If all rotations tried and still no match, stop
+            if (n == 0 && !str.toString().equals(goal))
+                break;
         }
 
+        // Final check (usually unnecessary due to loop, but kept safely)
         return str.toString().equals(goal);
     }
 }
+
 
 //Alternative O(n) Solution
 
