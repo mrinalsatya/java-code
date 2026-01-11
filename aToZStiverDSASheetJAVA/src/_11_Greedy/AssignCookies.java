@@ -38,6 +38,9 @@ public class AssignCookies {
                 l++;
             }
 
-            // Number of conten
+            // r represents the number of children who got cookies
+            return r;
 
         }
+    }
+}
