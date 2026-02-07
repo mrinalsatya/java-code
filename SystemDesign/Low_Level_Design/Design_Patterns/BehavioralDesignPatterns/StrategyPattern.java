@@ -1,49 +1,69 @@
 package SystemDesign.Low_Level_Design.Design_Patterns.BehavioralDesignPatterns;
 
 public class StrategyPattern {
-    interface PaymentStrategy{
+
+    // 1️⃣ Strategy Interface
+    interface PaymentStrategy {
         boolean pay(double amount);
     }
 
-    class CreditCardPayment implements PaymentStrategy{
+    // 2️⃣ Concrete Strategy: Credit Card
+    static class CreditCardPayment implements PaymentStrategy {
         private String cardNumber;
-        CreditCardPayment(String cardNumber){
+
+        CreditCardPayment(String cardNumber) {
             this.cardNumber = cardNumber;
         }
 
         @Override
         public boolean pay(double amount) {
-            System.out.println("Paid " + amount + " with credit card");
+            System.out.println("Paid ₹" + amount + " using Credit Card: " + cardNumber);
             return true;
         }
     }
 
-    class UpiPayemnt implements PaymentStrategy{
+    // 3️⃣ Concrete Strategy: UPI
+    static class UpiPayment implements PaymentStrategy {
         private String upiId;
-        UpiPayemnt(String upiId){
+
+        UpiPayment(String upiId) {
             this.upiId = upiId;
         }
+
         @Override
         public boolean pay(double amount) {
-            System.out.println("Paid " + amount + " using UPI");
-            return  true;
+            System.out.println("Paid ₹" + amount + " using UPI: " + upiId);
+            return true;
         }
     }
 
-    class ShoppingCart {
-        private PaymentStrategy payment;
+    // 4️⃣ Context Class
+    static class ShoppingCart {
+        private PaymentStrategy paymentStrategy;
 
-        public void setPayment(PaymentStrategy payment) {
-            this.payment = payment;
+        public void setPaymentStrategy(PaymentStrategy paymentStrategy) {
+            this.paymentStrategy = paymentStrategy;
         }
 
-        public void checkout(double amount){
-            payment.pay(amount);
+        public void checkout(double amount) {
+            if (paymentStrategy == null) {
+                throw new IllegalStateException("Payment strategy not set");
+            }
+            paymentStrategy.pay(amount);
         }
     }
-    // Usage
-    ShoppingCart cart = new ShoppingCart();
-    cart.setPayment(new void CreditCardPayment("1234-1234"));
-    cart.checkout(100.00);;
+
+    // 5️⃣ Client Code
+    public static void main(String[] args) {
+        ShoppingCart cart = new ShoppingCart();
+
+        // Pay using Credit Card
+        cart.setPaymentStrategy(new CreditCardPayment("1234-5678"));
+        cart.checkout(1000);
+
+        // Switch strategy at runtime
+        cart.setPaymentStrategy(new UpiPayment("user@upi"));
+        cart.checkout(500);
+    }
 
 }
